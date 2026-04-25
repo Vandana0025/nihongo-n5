@@ -1,10 +1,21 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
+  background: #f9fafb;
+  color: #111827;
+  font-family: system-ui, sans-serif;
+  /* Extend content into safe areas so background fills edge-to-edge */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+.dark body {
   background: #0f0f13;
   color: #f1f1f1;
-  font-family: system-ui, sans-serif;
 }

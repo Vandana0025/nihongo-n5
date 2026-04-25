@@ -13,20 +13,20 @@ export default function ProgressPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-10 space-y-8">
       <div>
-        <Link to="/" className="text-white/30 hover:text-white text-sm transition-colors">← All Lessons</Link>
-        <h1 className="text-2xl font-bold text-white mt-1">My Progress</h1>
+        <Link to="/" className="text-gray-900/30 dark:text-white/30 hover:text-gray-900 dark:hover:text-white text-sm transition-colors">← All Lessons</Link>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mt-1">My Progress</h1>
       </div>
 
       {/* Summary */}
       <div className="grid grid-cols-3 gap-4">
         {[
-          { label: "Completed", value: `${completed} / 25` },
+          { label: "Completed", value: `${completed} / ${lessons.length}` },
           { label: "Attempted", value: attempted },
           { label: "Avg Score", value: attempted ? `${avgScore}%` : "—" },
         ].map(({ label, value }) => (
-          <div key={label} className="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
-            <div className="text-2xl font-bold text-white">{value}</div>
-            <div className="text-white/40 text-xs uppercase tracking-widest mt-1">{label}</div>
+          <div key={label} className="bg-gray-900/5 dark:bg-white/5 border border-gray-900/10 dark:border-white/10 rounded-xl p-4 text-center">
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">{value}</div>
+            <div className="text-gray-900/40 dark:text-white/40 text-xs uppercase tracking-widest mt-1">{label}</div>
           </div>
         ))}
       </div>
@@ -37,21 +37,21 @@ export default function ProgressPage() {
           const p = progress.find((x) => x.lessonId === lesson.id);
           const score = p?.quizBestScore ?? null;
           return (
-            <div key={lesson.id} className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between">
+            <div key={lesson.id} className="bg-gray-900/5 dark:bg-white/5 border border-gray-900/10 dark:border-white/10 rounded-xl px-4 py-3 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold ${p?.completed ? "bg-green-600 text-white" : "bg-white/10 text-white/50"}`}>
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold ${p?.completed ? "bg-green-600 text-white" : "bg-gray-900/10 dark:bg-white/10 text-gray-900/50 dark:text-white/50"}`}>
                   {p?.completed ? "✓" : lesson.id}
                 </div>
                 <div>
-                  <div className="text-white text-sm font-medium">{lesson.title} — {lesson.topic}</div>
-                  {p && <div className="text-white/30 text-xs">{p.quizAttempts} attempt{p.quizAttempts > 1 ? "s" : ""}</div>}
+                  <div className="text-gray-900 dark:text-white text-sm font-medium">{lesson.title} — {lesson.topic}</div>
+                  {p && <div className="text-gray-900/30 dark:text-white/30 text-xs">{p.quizAttempts} attempt{p.quizAttempts > 1 ? "s" : ""}</div>}
                 </div>
               </div>
               <div className="flex items-center gap-3">
                 {score !== null && (
-                  <span className={`text-sm font-bold ${score >= 70 ? "text-green-400" : "text-yellow-400"}`}>{score}%</span>
+                  <span className={`text-sm font-bold ${score >= 70 ? "text-green-600 dark:text-green-400" : "text-yellow-600 dark:text-yellow-400"}`}>{score}%</span>
                 )}
-                <Link to={`/lesson/${lesson.id}/quiz`} className="text-white/30 hover:text-white text-xs transition-colors">
+                <Link to={`/lesson/${lesson.id}/quiz`} className="text-gray-900/30 dark:text-white/30 hover:text-gray-900 dark:hover:text-white text-xs transition-colors">
                   {p ? "Retry" : "Start"} →
                 </Link>
               </div>
